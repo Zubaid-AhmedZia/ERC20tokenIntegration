@@ -1,4 +1,4 @@
-const contractAddress = "0x78551a00C2Aee63991a6692709027C9CC72556cE";
+const contractAddress = "0x2d72b0C8E3d38c6CF8670b914d654295A727Eaca";
 const abi = [
 	{
 		"inputs": [
@@ -32,11 +32,6 @@ const abi = [
 			},
 			{
 				"internalType": "uint256",
-				"name": "_totalPresaleToken",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
 				"name": "_totalPublicSaleToken",
 				"type": "uint256"
 			},
@@ -48,11 +43,6 @@ const abi = [
 			{
 				"internalType": "uint256",
 				"name": "_privateSaleTime",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_presaleTime",
 				"type": "uint256"
 			}
 		],
@@ -195,24 +185,6 @@ const abi = [
 		"type": "function"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"name": "mint",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -243,19 +215,6 @@ const abi = [
 		],
 		"name": "Paused",
 		"type": "event"
-	},
-	{
-		"inputs": [],
-		"name": "preSaletransfer",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "payable",
-		"type": "function"
 	},
 	{
 		"inputs": [],
@@ -294,6 +253,37 @@ const abi = [
 		"inputs": [
 			{
 				"internalType": "uint256",
+				"name": "amountToBurn",
+				"type": "uint256"
+			}
+		],
+		"name": "setBurnAmount",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "totalLimit",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "transferLimit",
+				"type": "uint256"
+			}
+		],
+		"name": "setBurnLimit",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
 				"name": "amount",
 				"type": "uint256"
 			}
@@ -320,16 +310,11 @@ const abi = [
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "totalVestingTime",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "vestingDuration",
+				"name": "cap",
 				"type": "uint256"
 			}
 		],
-		"name": "setTeamvesting",
+		"name": "setTransferCap",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -344,6 +329,24 @@ const abi = [
 				"type": "bool"
 			}
 		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "tokenWithdrawal",
+		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
@@ -452,6 +455,13 @@ const abi = [
 		"type": "event"
 	},
 	{
+		"inputs": [],
+		"name": "withdrawal",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "address",
@@ -465,6 +475,19 @@ const abi = [
 			}
 		],
 		"name": "allowance",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "amountAfterBurn",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -495,14 +518,34 @@ const abi = [
 		"type": "function"
 	},
 	{
-		"inputs": [
+		"inputs": [],
+		"name": "burnAmount",
+		"outputs": [
 			{
-				"internalType": "address",
+				"internalType": "uint256",
 				"name": "",
-				"type": "address"
+				"type": "uint256"
 			}
 		],
-		"name": "claimAbleTeamBalance",
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "burnLimitOverall",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "burnLimitTransfer",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -566,32 +609,6 @@ const abi = [
 	},
 	{
 		"inputs": [],
-		"name": "lastRewardUpdate",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "lastUpdateTeam",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
 		"name": "name",
 		"outputs": [
 			{
@@ -624,45 +641,6 @@ const abi = [
 				"internalType": "bool",
 				"name": "",
 				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "presaleCount",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "presalePrice",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "presaleTime",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",
@@ -805,13 +783,38 @@ const abi = [
 		"type": "function"
 	},
 	{
-		"inputs": [],
-		"name": "teamClaimAble",
-		"outputs": [
+		"inputs": [
 			{
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
+			}
+		],
+		"name": "team",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "teamMemberClaimed",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
 			}
 		],
 		"stateMutability": "view",
@@ -832,46 +835,7 @@ const abi = [
 	},
 	{
 		"inputs": [],
-		"name": "teamTotalUnlockToken",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "teamVesting",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "teamVestingDuration",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "totalPresaleToken",
+		"name": "totalBurned",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -910,19 +874,6 @@ const abi = [
 	},
 	{
 		"inputs": [],
-		"name": "totalReward",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
 		"name": "totalSupply",
 		"outputs": [
 			{
@@ -937,6 +888,32 @@ const abi = [
 	{
 		"inputs": [],
 		"name": "totalTeamToken",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "totalTokenSupply",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "transferCap",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -999,19 +976,6 @@ async function connectWallet() {
   }
 }
 
-async function mintTokens() {
-  const addressTo = document.getElementById("to").value;
-  const amount = document.getElementById("amount").value;
-  const weiAmount = ethers.utils.parseEther(amount);
-  try {
-    const tx = await contract.mint(addressTo, weiAmount);
-    await tx.wait();
-    alert("Transaction successful!");
-  } catch (error) {
-    console.error("Error:", error);
-  }
-}
-
 async function publicSaleTransfer() {
   const amount = document.getElementById("publicSaleAmount").value;
   const weiAmount = ethers.utils.parseEther(amount);
@@ -1029,18 +993,6 @@ async function privateSaleTransfer() {
   const weiAmount = ethers.utils.parseEther(amount);
   try {
     const tx = await contract.privateSaletransfer({ value: weiAmount });
-    await tx.wait();
-    alert("Transaction successful!");
-  } catch (error) {
-    console.error("Error:", error);
-  }
-}
-
-async function preSaleTransfer() {
-  const amount = document.getElementById("preSaleAmount").value;
-  const weiAmount = ethers.utils.parseEther(amount);
-  try {
-    const tx = await contract.preSaletransfer({ value: weiAmount });
     await tx.wait();
     alert("Transaction successful!");
   } catch (error) {
@@ -1075,17 +1027,7 @@ async function airdropTokens() {
   }
 }
 
-async function setTeamVesting() {
-  const vestingTime = document.getElementById("vestingTime").value;
-  const vestingDuration = document.getElementById("vestingDuration").value;
-  try {
-    const tx = await contract.setTeamvesting(vestingTime, vestingDuration);
-    await tx.wait();
-    alert("Team vesting set successfully!");
-  } catch (error) {
-    console.error("Error:", error);
-  }
-}
+
 
 async function setTeamAddresses() {
   const addresses = document.getElementById("teamAddresses").value.split(",");
@@ -1118,3 +1060,38 @@ async function owner() {
     console.error("Error:", error);
   }
 }
+
+async function ClaimPrivateSaleToken() {
+	try {
+	 const tx = await contract.claimPrivateSaleTokens();
+	 await tx.wait();
+	console.error("Tx:", tx)
+	} catch (error) {
+	  console.error("Error:", error);
+	}
+  }
+
+  async function tokenWithdrawal() {
+	const addressTo = document.getElementById("to").value;
+	const amount = document.getElementById("amount").value;
+	const weiAmount = ethers.utils.parseEther(amount);
+	try {
+	  const tx = await contract.tokenWithdrawal(addressTo, weiAmount);
+	  await tx.wait();
+	  alert("Transaction successful!");
+	} catch (error) {
+	  console.error("Error:", error);
+	}
+  }
+
+  async function withdrawal() {
+	try {
+	  const tx = await contract.withdrawal();
+	  await tx.wait();
+	  alert("Transaction successful!");
+	} catch (error) {
+	  console.error("Error:", error);
+	}
+  }
+
+
